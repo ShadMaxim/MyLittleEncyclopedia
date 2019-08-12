@@ -6,6 +6,6 @@ import android.os.Bundle
 class Main : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_category)
+        setContentView(R.layout.activity_details)
     }
 }

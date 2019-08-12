@@ -2,7 +2,7 @@ package com.example.mylittleencyclopedia
 
 import org.junit.Test
 
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 
 /**
  * Example local unit activity_recycler_view, which will execute on the development machine (host).

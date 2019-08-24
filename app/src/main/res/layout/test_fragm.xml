@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/categoryRecyclerProgressBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible" />
+
+        <FrameLayout
+            android:id="@+id/categoryRecyclerFrameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/fon_example">
+
+            <!--<EditText
+                android:id="@+id/searchEditTextCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:drawablePadding="12dp"
+                android:hint="Строка поиска"
+                android:inputType="text"
+                android:textCursorDrawable="@null"
+                android:textSize="15sp" />-->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp" />
+
+        </FrameLayout>
+
+        <ImageView
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="200dp"
+            android:background="@drawable/ic_star_black_24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="400dp"
+            android:background="@drawable/ic_star_black_24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="600dp"
+            android:background="@drawable/ic_star_black_24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </FrameLayout>
+</ScrollView>

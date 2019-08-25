@@ -2,9 +2,11 @@ package com.example.mylittleencyclopedia.presentation.details
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import android.widget.ImageView
 import android.widget.Toast
@@ -37,15 +39,20 @@ class DetailsFragment : Fragment(), ViewDetails {
     private lateinit var url6: ImageView
     private lateinit var url7: ImageView
 
+    private lateinit var likes: ImageView
+    private lateinit var idObjectCategory: String
+
     private var titleExample: String = ""
 
     companion object {
         private const val ID_EXAMPLE = "ID_EXAMPLE"
+        private const val ID_CATEGORY = "ID_CATEGORY"
 
-        fun getInstance(idExample: String): DetailsFragment {
+        fun getInstance(idExample: String, idObjectCategory: String): DetailsFragment {
             val fragment = DetailsFragment()
             val args = Bundle()
             args.putString(ID_EXAMPLE, idExample)
+            args.putString(ID_CATEGORY, idObjectCategory)
             fragment.arguments = args
             return fragment
         }
@@ -61,6 +68,10 @@ class DetailsFragment : Fragment(), ViewDetails {
         val view = inflater.inflate(R.layout.fragment_details, container, false)
 
         val idExample = arguments?.getString(ID_EXAMPLE)
+        idObjectCategory = arguments?.getString(ID_CATEGORY).toString()
+        Log.e("AAA idObjectCategory = ", "id = " + idObjectCategory)
+
+        likes = view.findViewById(R.id.detailsLikesImageView)
 
         nameDetails = view.findViewById(R.id.exampleDetailsNameTextView)
 
@@ -84,8 +95,14 @@ class DetailsFragment : Fragment(), ViewDetails {
         presenter!!.setView(this)
 
         if (idExample != null) {
-            presenter!!.getExampleById(idExample)
+            presenter!!.getExampleById(idExample, idObjectCategory)
         }
+
+        view.findViewById<ImageView>(R.id.detailsLikesImageView).setOnClickListener {
+            presenter!!.clickLikes(idObjectCategory)
+            Log.e("AAA clickLikes =  ", "id = " + idObjectCategory)
+        }
+
         return view
     }
 
@@ -116,6 +133,10 @@ class DetailsFragment : Fragment(), ViewDetails {
 
     override fun showToastError(text: String) {
         Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun unShowLikes() {
+        likes.visibility = View.INVISIBLE
     }
 
     override fun onDetach() {

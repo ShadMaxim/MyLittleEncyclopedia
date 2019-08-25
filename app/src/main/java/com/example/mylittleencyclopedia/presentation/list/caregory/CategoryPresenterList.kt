@@ -37,7 +37,7 @@ class CategoryPresenterList : CategoryBasePresenterList {
         charInFilter = text
 
         disposable = repository
-            .getCategoryByUserId(100, 0, text)
+            .getCategoryByChar(100, 0, text)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ data ->
@@ -89,7 +89,7 @@ class CategoryPresenterList : CategoryBasePresenterList {
         view?.showProgressBar()
 
         disposable = repository
-            .getCategoryByUserId(100, 0, "")
+            .getCategoryByChar(100, 0, "")
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ data ->

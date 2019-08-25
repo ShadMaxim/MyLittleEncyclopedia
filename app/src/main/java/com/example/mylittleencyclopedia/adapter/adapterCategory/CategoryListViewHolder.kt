@@ -8,23 +8,28 @@ import com.example.mylittleencyclopedia.R
 import com.example.mylittleencyclopedia.data.model.DataExampleEncyclopedia
 import com.example.mylittleencyclopedia.util.picassoLoader
 
-class CategoryListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class CategoryListViewHolder(view: View) : RecyclerView.ViewHolder(view), ViewHolder {
 
     private val imageViewHead = itemView.findViewById<ImageView>(R.id.imageViewCategoryHead)
     private val nameCategoryTextView = itemView.findViewById<TextView>(R.id.nameCategoryTextView)
     private val textViewDate = itemView.findViewById<TextView>(R.id.textViewDate)
     private val countLikes = itemView.findViewById<TextView>(R.id.count_likes)
 
+    private var presenter: PresenterHolder? = null
+
     fun bind(exampleEncyclopedia: DataExampleEncyclopedia) {
 
-        /*if (exampleEncyclopedia.zzz != null){
-            Log.e("AAA", " zzz = not null")
-        }else {
-            Log.e("AAA", " zzz =  null")}*/
+        presenter = PresenterHolder()
+        presenter!!.setView(this)
 
         nameCategoryTextView.text = exampleEncyclopedia.category
-        textViewDate.text = exampleEncyclopedia.date_up
         countLikes.text = exampleEncyclopedia.count_likes
         picassoLoader(exampleEncyclopedia.category_image, imageViewHead)
+
+        presenter!!.getTimeStamp(exampleEncyclopedia.updated.toLong())
+    }
+
+    override fun showDate(date: String) {
+        textViewDate.text = date
     }
 }

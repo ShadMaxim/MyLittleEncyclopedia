@@ -3,8 +3,7 @@ package com.example.mylittleencyclopedia.data.provide
 import com.example.mylittleencyclopedia.data.model.DataExampleEncyclopedia
 import io.reactivex.Observable
 import io.reactivex.Single
-import retrofit2.http.GET
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface EncyclopediaApi {
 
@@ -32,11 +31,16 @@ interface EncyclopediaApi {
     ): Observable<List<DataExampleEncyclopedia>>
 
     @GET("data/category")
-    fun getCategoryByUserId(
+    fun getCategoryByChar(
         @Query("pageSize") pageSize: Int,
         @Query("offset") offset: Int,
-        @Query("where") category_id: String
+        @Query("where") char: String
     ): Observable<List<DataExampleEncyclopedia>>
+
+    @GET("data/category/{objectId}")
+    fun getCategoryById(
+        @Path("objectId") category_id: String
+    ): Single<DataExampleEncyclopedia>
 
     @GET("data/beta")
     fun getExampleBeta(
@@ -48,4 +52,9 @@ interface EncyclopediaApi {
         @Query("pageSize") pageSize: Int,
         @Query("offset") offset: Int
     ): Observable<List<DataExampleEncyclopedia>>
+
+    @PUT("data/category")
+    fun updateCountLikes(
+        @Body countLikes: DataExampleEncyclopedia
+    ): Single<DataExampleEncyclopedia>
 }

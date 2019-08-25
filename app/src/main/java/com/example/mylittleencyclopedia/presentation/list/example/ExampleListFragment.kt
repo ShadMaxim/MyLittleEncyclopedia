@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.ProgressBar
 import android.widget.Toast
@@ -24,23 +23,26 @@ class ExampleListFragment : Fragment(),
 
     private lateinit var adapter: ExampleListAdapter
     private lateinit var prefManager: SharedPrefManager
+
+    private lateinit var idObjectCategory: String
+
     private var searchText: String = ""
     private var listener: Listener? = null
     private var presenter: ExamplePresenterList? = null
     private var emptyList: MutableList<DataExampleEncyclopedia> = mutableListOf()
-
-    private lateinit var searchEditText: EditText
 
     private var progressBar: ProgressBar? = null
     private var frameLayout: FrameLayout? = null
 
     companion object {
         private const val ID_CATEGORY = "ID_CATEGORY"
+        private const val ID_OBJECT = "ID_OBJECT"
 
-        fun getInstance(id_category: String): ExampleListFragment {
+        fun getInstance(id_category: String, idObjectCategory: String): ExampleListFragment {
             val fragment = ExampleListFragment()
             val args = Bundle()
             args.putString(ID_CATEGORY, id_category)
+            args.putString(ID_OBJECT, idObjectCategory)
             fragment.arguments = args
             return fragment
         }
@@ -56,6 +58,7 @@ class ExampleListFragment : Fragment(),
         val view = inflater.inflate(R.layout.fragment_recycler_view_example, container, false)
 
         val idCategory = arguments?.getString(ID_CATEGORY)
+        idObjectCategory = arguments?.getString(ID_OBJECT).toString()
 
         presenter = ExamplePresenterList()
         presenter?.setView(this)
@@ -107,7 +110,7 @@ class ExampleListFragment : Fragment(),
         val paramsExample = "{\"example\":\"" + item.name + "\"}"
         YandexMetrica.reportEvent("SelectedExample", paramsExample)
 
-        listener?.onExampleClick(item.id)
+        listener?.onExampleClick(item.idObject, idObjectCategory)
     }
 
     override fun onDetach() {
@@ -121,6 +124,6 @@ class ExampleListFragment : Fragment(),
     }
 
     interface Listener {
-        fun onExampleClick(id: String)
+        fun onExampleClick(id: String, idObjectCategory: String)
     }
 }

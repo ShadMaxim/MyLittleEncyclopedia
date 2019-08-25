@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 data class DataExampleEncyclopedia(
 
-    @SerializedName("objectId")
-    val id: String,
+   /* @SerializedName("objectId")
+    val idObject: String,
 
     @SerializedName("d_object")
     val name: String,
@@ -32,11 +32,43 @@ data class DataExampleEncyclopedia(
     val date_up: String,
 
     @SerializedName("zzz")
-    val zzz: String,
+    val zzz: String,*/
+    @SerializedName("objectId")
+    val idObject: String,
+
+    @SerializedName("category")
+    var category: String,
+
+    @SerializedName("id_category")
+    var id_category: String,
+
+    @SerializedName("category_image")
+    var category_image: String,
 
     @SerializedName("count_likes")
-    val count_likes: String
+    var count_likes: String,
+
+    @SerializedName("date_up")
+    var date_up: String,
+
+    @SerializedName("updated")
+    var updated: String
 ) {
+
+    @SerializedName("d_object")
+    var name: String = ""
+
+    @SerializedName("text_1")
+    var text_box_one: String = ""
+
+    @SerializedName("text_2")
+    var text_box_two: String = ""
+
+    @SerializedName("image_1")
+    var url_box_one: String = ""
+
+    @SerializedName("zzz")
+    val zzz: String = ""
 
     @SerializedName("text_box_eight")
     var text_box_eight: String = ""

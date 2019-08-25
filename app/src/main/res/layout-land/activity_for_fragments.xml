@@ -19,12 +19,12 @@
         android:layout_height="match_parent"
         android:layout_weight="12" />
 
-    <FrameLayout
+   <!-- <FrameLayout
         android:id="@+id/dz8ContainerSecond"
         android:background="@color/fon_example"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="20" />
+        android:layout_weight="20" />-->
 
     <FrameLayout
         android:id="@+id/dz8ContainerThird"

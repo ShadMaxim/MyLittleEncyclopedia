@@ -10,7 +10,7 @@ class Test : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.test_item)
+        setContentView(R.layout.item_recycler_category_ver_two)
 
 
         val arr1 = intArrayOf(1, 4, 11, 40, 50)

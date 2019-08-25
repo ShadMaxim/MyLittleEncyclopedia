@@ -109,7 +109,7 @@ class CategoryListFragment : Fragment(),
         val paramsCategory = "{\"title\":\"" + item.category + "\"}"
         YandexMetrica.reportEvent("SelectedCategory", paramsCategory)
 
-        listener?.onCategoryClick(item.id_category)
+        listener?.onCategoryClick(item.id_category, item.idObject)
     }
 
     fun updateRecyclerList() {
@@ -138,6 +138,6 @@ class CategoryListFragment : Fragment(),
     }
 
     interface Listener {
-        fun onCategoryClick(id: String)
+        fun onCategoryClick(idCategory: String, idObject: String)
     }
 }

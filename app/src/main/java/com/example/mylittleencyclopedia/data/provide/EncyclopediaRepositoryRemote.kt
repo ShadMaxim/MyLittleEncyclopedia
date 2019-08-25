@@ -22,8 +22,12 @@ class EncyclopediaRepositoryRemote(private var api: EncyclopediaApi) : Encyclope
         return api.searchByCharOrName(pageSize, offset, "name LIKE '%$charName%'")
     }
 
-    override fun getCategoryByUserId(pageSize: Int, offset: Int, category_id: String): Observable<List<DataExampleEncyclopedia>> {
-        return api.getCategoryByUserId(pageSize, offset, "category LIKE '%$category_id%'")
+    override fun getCategoryByChar(pageSize: Int, offset: Int, char: String): Observable<List<DataExampleEncyclopedia>> {
+        return api.getCategoryByChar(pageSize, offset, "category LIKE '%$char%'")
+    }
+
+    override fun getCategoryById(category_id: String): Single<DataExampleEncyclopedia> {
+        return api.getCategoryById(category_id)
     }
 
     override fun getExampleBeta(charCategory: String): Observable<List<DataExampleEncyclopedia>> {
@@ -36,5 +40,9 @@ class EncyclopediaRepositoryRemote(private var api: EncyclopediaApi) : Encyclope
 
     override fun getAll(pageSize: Int, offset: Int): Observable<List<DataExampleEncyclopedia>> {
         return api.getAll(pageSize, offset)
+    }
+
+    override fun updateCountLikes(example: DataExampleEncyclopedia): Single<DataExampleEncyclopedia> {
+        return api.updateCountLikes(example)
     }
 }

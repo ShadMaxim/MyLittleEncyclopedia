@@ -8,11 +8,10 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="match_parent"
+        android:layout_width="226dp"
         android:layout_height="33dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="10dp"
-        android:layout_marginLeft="149dp"
         android:scaleType="centerCrop"
         android:src="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,13 +23,13 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
-        android:layout_marginStart="250dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginRight="50dp"
+        android:layout_width="153dp"
+        android:layout_height="111dp"
+        android:layout_margin="5dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginLeft="76dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginBottom="4dp"
         android:scaleType="centerCrop"
         android:src="@color/fon_example"
@@ -42,10 +41,10 @@
 
     <TextView
         android:id="@+id/nameCategoryTextView"
-        android:layout_width="match_parent"
+        android:layout_width="238dp"
         android:layout_height="122dp"
-        android:layout_marginStart="149dp"
-        android:layout_marginLeft="149dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginLeft="116dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
@@ -136,9 +135,11 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
         android:text="Последнее обноврение:"
         android:textSize="7sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
         app:layout_constraintStart_toStartOf="@+id/imageView2" />
 
 

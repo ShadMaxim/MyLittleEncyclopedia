@@ -11,9 +11,13 @@ interface EncyclopediaRepository {
     fun getExampleList(charCategory: String): Observable<List<DataExampleEncyclopedia>>
 
     fun search(pageSize: Int, offset: Int, charName: String): Observable<List<DataExampleEncyclopedia>>
-    fun getCategoryByUserId(pageSize: Int, offset: Int, category_id: String): Observable<List<DataExampleEncyclopedia>>
+
+    fun getCategoryByChar(pageSize: Int, offset: Int, char: String): Observable<List<DataExampleEncyclopedia>>
+    fun getCategoryById(category_id: String): Single<DataExampleEncyclopedia>
 
     fun getExampleBeta(charCategory: String): Observable<List<DataExampleEncyclopedia>>
     fun getExampleBetaSearch(charCategory: String): Observable<List<DataExampleEncyclopedia>>
     fun getAll(pageSize: Int, offset: Int): Observable<List<DataExampleEncyclopedia>>
+
+    fun updateCountLikes(example: DataExampleEncyclopedia): Single<DataExampleEncyclopedia>
 }

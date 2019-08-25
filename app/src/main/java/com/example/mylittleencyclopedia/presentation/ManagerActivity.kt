@@ -29,14 +29,14 @@ class ManagerActivity : FragmentActivity(),
         }
     }
 
-    override fun onExampleClick(id: String) {
-        Log.e("AAA onExampleClick =  ", id)
-        replaceFragment(getLandOrPortrait(), DetailsFragment.getInstance(id))
+    override fun onExampleClick(id: String, idOblectCategory: String) {
+        Log.e("AAA onExampleClick =  ", id + "idObCat " + idOblectCategory)
+        replaceFragment(getLandOrPortrait(), DetailsFragment.getInstance(id, idOblectCategory))
     }
 
-    override fun onCategoryClick(id: String) {
-        Log.e("AAA onExampleClick =  ", id)
-        replaceFragment(getLandOrPortrait(), ExampleListFragment.getInstance(id))
+    override fun onCategoryClick(idCategory: String, idObjectCategory: String) {
+        Log.e("AAA onExampleClick =  ", idCategory + "idObCat " + idObjectCategory)
+        replaceFragment(getLandOrPortrait(), ExampleListFragment.getInstance(idCategory, idObjectCategory))
     }
 
     private fun replaceFragment(idContainer: Int, nameFragment: Fragment) {
@@ -67,7 +67,8 @@ class ManagerActivity : FragmentActivity(),
 
     private fun getLandOrPortrait(): Int {
         return if (isLandOrientation) {
-            R.id.dz8ContainerSecond
+            // R.id.dz8ContainerSecond
+            R.id.dz8ContainerHead
         } else {
             R.id.dz8ContainerHead
         }
@@ -78,7 +79,7 @@ class ManagerActivity : FragmentActivity(),
         if (isLandOrientation) {
 
         } else {
-            val fragment = supportFragmentManager.findFragmentById(R.id.dz8ContainerHead)
+            val fragment = supportFragmentManager.findFragmentById(R.idObject.dz8ContainerHead)
 
             if (fragment is CategoryListFragment) {
 

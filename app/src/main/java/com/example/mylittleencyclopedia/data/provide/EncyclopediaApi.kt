@@ -3,7 +3,11 @@ package com.example.mylittleencyclopedia.data.provide
 import com.example.mylittleencyclopedia.data.model.DataExampleEncyclopedia
 import io.reactivex.Observable
 import io.reactivex.Single
-import retrofit2.http.*
+import retrofit2.http.GET
+import retrofit2.http.Query
+import retrofit2.http.Path
+import retrofit2.http.PUT
+import retrofit2.http.Body
 
 interface EncyclopediaApi {
 

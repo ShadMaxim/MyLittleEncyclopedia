@@ -7,8 +7,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import java.lang.Integer.parseInt
-import java.text.SimpleDateFormat
-import java.util.*
 
 class PresenterDetails : BasePresenterDetails {
 
@@ -35,7 +33,6 @@ class PresenterDetails : BasePresenterDetails {
 
                 example = it[0]
                 Log.e("AAA example =  ", example.toString())
-
                 view?.showExample(example!!)
             }, {
 
@@ -51,9 +48,6 @@ class PresenterDetails : BasePresenterDetails {
 
                 exampleCategory = it
                 Log.e("AAA exampleCategory Rx=", exampleCategory.toString())
-
-                //view?.showExample("")
-                //view?.unShowLikes()
             }, {
 
                 view?.showToastError("""Error : $it""")
@@ -71,7 +65,6 @@ class PresenterDetails : BasePresenterDetails {
         val dateUp: String = exampleCategory!!.date_up
         val updated: String = exampleCategory!!.updated
 
-
         val temp = parseInt(countLikes)
         val tempUpdate: Long = updated.toLong()
         val x = (temp + 1).toString()
@@ -79,9 +72,6 @@ class PresenterDetails : BasePresenterDetails {
         Log.e("AAA temp =  ", temp.toString())
         Log.e("AAA x =  ", x.toString())
         Log.e("AAA tempUpdate =  ", tempUpdate.toString())
-
-        getTimeStamp(tempUpdate)
-        Log.e("AAA date =  ", getTimeStamp(tempUpdate))
 
         val updateCategory = DataExampleEncyclopedia(idObject, category, idcategory, categoryImage, x, dateUp, updated)
 
@@ -92,8 +82,6 @@ class PresenterDetails : BasePresenterDetails {
             .subscribe({
 
                 Log.e("AAA it update = ", it.toString())
-
-
                 view?.unShowLikes()
             }, {
 
@@ -105,14 +93,5 @@ class PresenterDetails : BasePresenterDetails {
     override fun detachView() {
         this.view = null
         disposable!!.dispose()
-    }
-
-    fun getTimeStamp(timeInMillies: Long): String {
-        var date: String? = null
-        val formatter: SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd") // modify format
-        date = formatter.format(Date(timeInMillies))
-        System.out.println("Today is " + date)
-
-        return date
     }
 }

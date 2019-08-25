@@ -23,5 +23,4 @@ class PresenterHolder {
     fun detachView() {
         this.view = null
     }
-
 }

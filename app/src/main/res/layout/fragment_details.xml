@@ -153,43 +153,54 @@
                 android:gravity="start"
                 android:textSize="13sp" />
 
-            <TextView
+            <Button
+                android:id="@+id/detailsButtonCloseComment"
+                android:layout_marginTop="20dp"
+                android:text="Закрыть комментарии"
+                android:textSize="13sp"
+                android:visibility="invisible"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:layout_weight="1"
-                android:gravity="start"
-                android:textSize="13sp" />
+                android:layout_height="wrap_content" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+            <EditText
+                android:id="@+id/detailsEdiTextComments"
+                android:hint="оставьте свой комментарий здесь"
+                android:background="@color/fon_example"
+                android:layout_marginTop="35dp"
                 android:layout_marginLeft="2dp"
-                android:layout_weight="1"
-                android:gravity="start"
-                android:textSize="13sp" />
-
-            <TextView
+                android:textSize="13sp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:layout_weight="1"
-                android:gravity="start"
-                android:textSize="13sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:layout_weight="1"
-                android:gravity="start"
-                android:textSize="13sp" />
+                android:layout_height="wrap_content" />
 
             <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/detailsButtonSendComments"
+                    android:text="Отправить свой комментарии"
+                    android:textSize="10sp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/detailsButtonShowComments"
+                    android:text="Посмотреть все комментариии"
+                    android:textSize="10sp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/detailsLinearComments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
             </LinearLayout>
 
@@ -212,6 +223,5 @@
             android:background="@drawable/ic_favorite_black_24dp" />
 
     </FrameLayout>
-
 
 </ScrollView>

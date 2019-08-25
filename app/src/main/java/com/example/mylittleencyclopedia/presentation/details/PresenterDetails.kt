@@ -1,6 +1,7 @@
 package com.example.mylittleencyclopedia.presentation.details
 
 import android.util.Log
+import com.example.mylittleencyclopedia.data.model.DataComments
 import com.example.mylittleencyclopedia.data.model.DataExampleEncyclopedia
 import com.example.mylittleencyclopedia.data.provide.provideEncyclopediaRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -15,6 +16,8 @@ class PresenterDetails : BasePresenterDetails {
     private val repository = provideEncyclopediaRepository()
     var example: DataExampleEncyclopedia? = null
     var exampleCategory: DataExampleEncyclopedia? = null
+
+    var listComments: MutableList<DataComments> = mutableListOf()
 
     override fun setView(view: ViewDetails) {
         this.view = view
@@ -88,6 +91,52 @@ class PresenterDetails : BasePresenterDetails {
                 view?.showToastError("""Error : $it""")
                 Log.e("AAA Error =  ", it.toString())
             })
+    }
+
+    override fun showComments() {
+
+        disposable = repository
+            .getCommentsByExample(100, 0, example!!.name)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+
+                listComments.clear()
+                listComments.addAll(it)
+                // Log.e("AAA List Comments =", it[0].textComments)
+                // Log.e("AAA List Comments =", it[1].textComments)
+                Log.e("AAA size listComments =", listComments.size.toString())
+                view?.showComments(listComments)
+                view?.unShowButtonShowComment()
+                view?.showCloseComment()
+            }, {
+
+                Log.e("AAA Comments Error =", it.toString())
+            })
+    }
+
+    override fun sendNewComments(text: String) {
+
+        val comments = DataComments(example!!.name, text)
+
+        disposable = repository
+            .createComments(comments)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+
+                // Log.e("AAA List Comments =", it[0].textComments)
+                Log.e("AAA it Comments =", it.toString())
+                Log.e("AAA  Comments =", comments.toString())
+                view?.unShowSendComment()
+            }, {
+
+                Log.e("AAA Comments Error =", it.toString())
+            })
+    }
+
+    override fun unShowCloseButtonComments() {
+        view?.unShowCloseButtonComment()
     }
 
     override fun detachView() {

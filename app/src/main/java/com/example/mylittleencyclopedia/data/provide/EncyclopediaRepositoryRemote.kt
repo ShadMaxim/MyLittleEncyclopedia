@@ -1,5 +1,6 @@
 package com.example.mylittleencyclopedia.data.provide
 
+import com.example.mylittleencyclopedia.data.model.DataComments
 import com.example.mylittleencyclopedia.data.model.DataExampleEncyclopedia
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -44,5 +45,13 @@ class EncyclopediaRepositoryRemote(private var api: EncyclopediaApi) : Encyclope
 
     override fun updateCountLikes(example: DataExampleEncyclopedia): Single<DataExampleEncyclopedia> {
         return api.updateCountLikes(example)
+    }
+
+    override fun getCommentsByExample(pageSize: Int, offset: Int, nameExample: String): Observable<List<DataComments>> {
+        return api.getCommentsByExample(pageSize, offset, "name_object LIKE '%$nameExample%'")
+    }
+
+    override fun createComments(comments: DataComments): Single<DataComments> {
+        return api.createCooments(comments)
     }
 }

@@ -6,4 +6,7 @@ interface BasePresenterDetails {
     fun getExampleById(idExample: String, idObjectCategory: String)
     fun detachView()
     fun clickLikes(idObjectCategory: String)
+    fun showComments()
+    fun sendNewComments(text: String)
+    fun unShowCloseButtonComments()
 }

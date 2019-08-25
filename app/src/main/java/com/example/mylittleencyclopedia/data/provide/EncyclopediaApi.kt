@@ -1,13 +1,15 @@
 package com.example.mylittleencyclopedia.data.provide
 
+import com.example.mylittleencyclopedia.data.model.DataComments
 import com.example.mylittleencyclopedia.data.model.DataExampleEncyclopedia
 import io.reactivex.Observable
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
+import retrofit2.http.Body
 import retrofit2.http.Path
 import retrofit2.http.PUT
-import retrofit2.http.Body
+import retrofit2.http.POST
 
 interface EncyclopediaApi {
 
@@ -61,4 +63,16 @@ interface EncyclopediaApi {
     fun updateCountLikes(
         @Body countLikes: DataExampleEncyclopedia
     ): Single<DataExampleEncyclopedia>
+
+    @POST("data/comments")
+    fun createCooments(
+        @Body comments: DataComments
+    ): Single<DataComments>
+
+    @GET("data/comments")
+    fun getCommentsByExample(
+        @Query("pageSize") pageSize: Int,
+        @Query("offset") offset: Int,
+        @Query("where") nameExample: String
+    ): Observable<List<DataComments>>
 }

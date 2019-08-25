@@ -17,7 +17,7 @@ class Bay : Activity() {
     }
 
     private fun getTimeStamp(timeInMillies: Long): String {
-        var date: String? = null
+        val date: String?
         val formatter: SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
         date = formatter.format(Date(timeInMillies))
 

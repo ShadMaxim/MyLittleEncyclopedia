@@ -1,19 +1,26 @@
 package com.example.mylittleencyclopedia.presentation.details
 
 import android.content.Context
+import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.EditText
+import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.mylittleencyclopedia.R
+import com.example.mylittleencyclopedia.data.model.DataComments
 import com.example.mylittleencyclopedia.data.model.DataExampleEncyclopedia
 import com.example.mylittleencyclopedia.presentation.MyListener
 import com.example.mylittleencyclopedia.util.picassoLoader
+import kotlinx.android.synthetic.main.fragment_details.*
 
 class DetailsFragment : Fragment(), ViewDetails {
 
@@ -21,6 +28,12 @@ class DetailsFragment : Fragment(), ViewDetails {
     private var presenter: PresenterDetails? = null
 
     private lateinit var nameDetails: TextView
+
+    private var editTextComments: EditText? = null
+    private var buttonSendComments: Button? = null
+    private var buttonShowComments: Button? = null
+    private var buttonCloseComments: Button? = null
+    private var linearLayoutForComments: LinearLayout? = null
 
     private lateinit var textOne: TextView
     private lateinit var textTwo: TextView
@@ -70,6 +83,12 @@ class DetailsFragment : Fragment(), ViewDetails {
         idObjectCategory = arguments?.getString(ID_CATEGORY).toString()
         Log.e("AAA idObjectCategory = ", "id = " + idObjectCategory)
 
+        editTextComments = view.findViewById(R.id.detailsEdiTextComments)
+        buttonSendComments = view.findViewById(R.id.detailsButtonSendComments)
+        buttonShowComments = view.findViewById(R.id.detailsButtonShowComments)
+        buttonCloseComments = view.findViewById(R.id.detailsButtonCloseComment)
+        linearLayoutForComments = view.findViewById(R.id.detailsLinearComments)
+
         likes = view.findViewById(R.id.detailsLikesImageView)
 
         nameDetails = view.findViewById(R.id.exampleDetailsNameTextView)
@@ -102,6 +121,20 @@ class DetailsFragment : Fragment(), ViewDetails {
             Log.e("AAA clickLikes =  ", "id = " + idObjectCategory)
         }
 
+        view.findViewById<Button>(R.id.detailsButtonShowComments).setOnClickListener {
+            presenter!!.showComments()
+        }
+
+        view.findViewById<Button>(R.id.detailsButtonSendComments).setOnClickListener {
+
+            val textComments = detailsEdiTextComments.text.toString()
+            presenter!!.sendNewComments(textComments)
+        }
+
+        view.findViewById<Button>(R.id.detailsButtonCloseComment).setOnClickListener {
+            presenter!!.unShowCloseButtonComments()
+        }
+
         return view
     }
 
@@ -124,6 +157,66 @@ class DetailsFragment : Fragment(), ViewDetails {
         text7.text = example.text_box_seven
 
         titleExample = example.name
+    }
+
+    override fun showComments(listComments: List<DataComments>) {
+
+        if (linearLayoutForComments?.visibility != View.VISIBLE) {
+            linearLayoutForComments?.visibility = View.VISIBLE
+        }
+
+        for (i in 0 until listComments.size) {
+
+            val parent = LinearLayout(context)
+            parent.layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            parent.orientation = LinearLayout.VERTICAL
+
+            val linearLayoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            linearLayoutParams.setMargins(5, 5, 5, 0)
+
+            val textView = TextView(context)
+            textView.layoutParams = linearLayoutParams
+            textView.text = listComments[i].textComments
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12F)
+            textView.setTypeface(null, Typeface.NORMAL)
+
+            val textView2 = TextView(context)
+            textView2.setLayoutParams(linearLayoutParams)
+            textView2.setText("")
+            textView2.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12F)
+            textView2.setTypeface(null, Typeface.NORMAL)
+
+            parent.removeAllViews()
+            parent.addView(textView)
+            parent.addView(textView2)
+
+            val finalParent = view!!.findViewById(R.id.detailsLinearComments) as ViewGroup
+            finalParent.addView(parent)
+        }
+    }
+
+    override fun unShowSendComment() {
+        editTextComments?.visibility = View.GONE
+        buttonSendComments?.visibility = View.GONE
+    }
+
+    override fun unShowButtonShowComment() {
+        buttonShowComments?.visibility = View.GONE
+    }
+
+    override fun showCloseComment() {
+        buttonCloseComments?.visibility = View.VISIBLE
+    }
+
+    override fun unShowCloseButtonComment() {
+        buttonCloseComments?.visibility = View.GONE
+        linearLayoutForComments?.visibility = View.GONE
     }
 
     override fun showToastOk(text: String) {

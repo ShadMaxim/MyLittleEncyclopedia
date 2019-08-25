@@ -127,7 +127,7 @@ class DetailsFragment : Fragment(), ViewDetails {
 
         view.findViewById<Button>(R.id.detailsButtonSendComments).setOnClickListener {
 
-            val textComments =detailsEdiTextComments.text.toString()
+            val textComments = detailsEdiTextComments.text.toString()
             presenter!!.sendNewComments(textComments)
         }
 
@@ -161,7 +161,7 @@ class DetailsFragment : Fragment(), ViewDetails {
 
     override fun showComments(listComments: List<DataComments>) {
 
-        if (linearLayoutForComments?.visibility != View.VISIBLE){
+        if (linearLayoutForComments?.visibility != View.VISIBLE) {
             linearLayoutForComments?.visibility = View.VISIBLE
         }
 

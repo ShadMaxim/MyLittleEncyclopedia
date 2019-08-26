@@ -3,12 +3,12 @@ package com.example.mylittleencyclopedia.app
 import android.app.Application
 import android.content.Context
 import androidx.multidex.MultiDex
-import androidx.multidex.MultiDexApplication
+// import androidx.multidex.MultiDexApplication
 import com.yandex.metrica.YandexMetrica
 import com.yandex.metrica.YandexMetricaConfig
 import com.yandex.metrica.push.YandexMetricaPush
 
-class App :  Application() {
+class App : Application() {
 
     override fun onCreate() {
         super.onCreate()

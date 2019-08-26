@@ -20,6 +20,7 @@ import com.example.mylittleencyclopedia.data.model.DataComments
 import com.example.mylittleencyclopedia.data.model.DataExampleEncyclopedia
 import com.example.mylittleencyclopedia.presentation.MyListener
 import com.example.mylittleencyclopedia.util.picassoLoader
+import com.yandex.metrica.YandexMetrica
 import kotlinx.android.synthetic.main.fragment_details.*
 
 class DetailsFragment : Fragment(), ViewDetails {
@@ -227,7 +228,11 @@ class DetailsFragment : Fragment(), ViewDetails {
         Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
     }
 
-    override fun unShowLikes() {
+    override fun unShowLikes(nameExample: String) {
+
+        val clickLikes = "{\"title\":\"$nameExample\"}"
+        YandexMetrica.reportEvent("ClickLikes", clickLikes)
+
         likes.visibility = View.INVISIBLE
     }
 

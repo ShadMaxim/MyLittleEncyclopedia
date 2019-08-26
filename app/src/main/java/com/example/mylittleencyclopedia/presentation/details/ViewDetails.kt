@@ -8,7 +8,7 @@ interface ViewDetails {
     fun showExample(example: DataExampleEncyclopedia)
     fun showToastOk(text: String)
     fun showToastError(text: String)
-    fun unShowLikes()
+    fun unShowLikes(text: String)
     fun unShowSendComment()
     fun unShowCloseButtonComment()
     fun showCloseComment()

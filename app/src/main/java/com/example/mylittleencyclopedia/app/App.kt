@@ -3,6 +3,7 @@ package com.example.mylittleencyclopedia.app
 import android.app.Application
 import com.yandex.metrica.YandexMetrica
 import com.yandex.metrica.YandexMetricaConfig
+import com.yandex.metrica.push.YandexMetricaPush
 
 class App : Application() {
 
@@ -15,5 +16,7 @@ class App : Application() {
 
         YandexMetrica.activate(applicationContext, config)
         YandexMetrica.enableActivityAutoTracking(this)
+
+        YandexMetricaPush.init(applicationContext)
     }
 }

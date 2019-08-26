@@ -85,7 +85,7 @@ class PresenterDetails : BasePresenterDetails {
             .subscribe({
 
                 Log.e("AAA it update = ", it.toString())
-                view?.unShowLikes()
+                view?.unShowLikes(example!!.name)
             }, {
 
                 view?.showToastError("""Error : $it""")

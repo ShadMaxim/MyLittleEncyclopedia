@@ -5,20 +5,33 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
-import com.example.mylittleencyclopedia.R
 import com.example.mylittleencyclopedia.presentation.sharedPrefs.SharedPrefManager
 import com.yandex.metrica.YandexMetrica
 import kotlinx.android.synthetic.main.activity_hello.*
+import android.text.TextUtils
+import com.example.mylittleencyclopedia.R
+import com.yandex.metrica.push.YandexMetricaPush
 
 class Hello : Activity() {
+
+    private var containsIntent: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hello)
 
+        containsIntent = findViewById(R.id.helloContainsIntent)
         val textName: EditText = findViewById<EditText>(R.id.editTextHello) as EditText
         val prefManager: SharedPrefManager = SharedPrefManager(this)
+
+        if (savedInstanceState != null) {
+            YandexMetrica.reportAppOpen(this)
+        }
+
+        var intent = intent
+        handlePayload(intent)
 
         buttonHello.setOnClickListener {
             val intent = Intent(this, ManagerActivity::class.java)
@@ -33,6 +46,14 @@ class Hello : Activity() {
             Log.e("AAA", prefManager.readUserText())
 
             textName.setText(prefManager.readUserText())
+        }
+    }
+
+    private fun handlePayload(intent: Intent) {
+        val payload = intent.getStringExtra(YandexMetricaPush.EXTRA_PAYLOAD)
+        if (!TextUtils.isEmpty(payload)) {
+            containsIntent?.append(String.format("\nPayload: %s", payload))
+            YandexMetrica.reportEvent("loading due Push")
         }
     }
 }

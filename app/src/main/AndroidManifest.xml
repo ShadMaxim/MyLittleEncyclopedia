@@ -13,6 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <meta-data  android:name="com.yandex.metrica.push.default_notification_icon"
+                    android:resource="@drawable/ic_local_library_black_24dp"/>
+
+        <receiver android:name=".pushreceiver.SilentPushReceiver">
+            <intent-filter>
+                <action android:name="com.example.mylittleencyclopedia.action.ymp.SILENT_PUSH_RECEIVE"/>
+            </intent-filter>
+        </receiver>
+
         <activity android:name=".presentation.ManagerActivity"/>
         <activity android:name=".presentation.Bay"/>
 

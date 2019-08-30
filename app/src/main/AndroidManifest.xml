@@ -25,7 +25,7 @@
         <activity android:name=".presentation.ManagerActivity"/>
         <activity android:name=".presentation.Bay"/>
 
-        <activity android:name=".presentation.Hello">
+        <activity android:name=".presentation.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

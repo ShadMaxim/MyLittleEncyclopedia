@@ -14,7 +14,7 @@ import android.text.TextUtils
 import com.example.mylittleencyclopedia.R
 import com.yandex.metrica.push.YandexMetricaPush
 
-class Hello : Activity() {
+class StartActivity : Activity() {
 
     private var containsIntent: TextView? = null
 
@@ -56,5 +56,15 @@ class Hello : Activity() {
             containsIntent?.append(String.format("\nPayload: %s", payload))
             YandexMetrica.reportEvent("loading due Push", payload)
         }
+    }
+
+    override fun onPause() {
+        YandexMetrica.pauseSession(this)
+        super.onPause()
+    }
+
+    override fun onResume() {
+        YandexMetrica.resumeSession(this)
+        super.onResume()
     }
 }

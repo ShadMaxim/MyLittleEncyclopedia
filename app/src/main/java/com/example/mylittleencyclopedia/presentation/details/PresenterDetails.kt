@@ -34,7 +34,6 @@ class PresenterDetails : BasePresenterDetails {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
 
-
                 example = it[0]
                 view?.showExample(example!!)
             }, {

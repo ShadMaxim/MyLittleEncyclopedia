@@ -140,7 +140,8 @@ class CategoryListFragment : Fragment(),
     }
 
     override fun showError(text: String) {
-        Toast.makeText(context, text, Toast.LENGTH_SHORT).show()    }
+        Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
+    }
 
     override fun onDetach() {
         super.onDetach()

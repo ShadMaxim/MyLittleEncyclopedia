@@ -43,8 +43,8 @@ class CategoryPresenterList : CategoryBasePresenterList {
                 val list = listOfCategory
 
                 view?.showNewList(list)
-
             }, { throwable ->
+
                 view?.showError(throwable.toString())
             })
     }

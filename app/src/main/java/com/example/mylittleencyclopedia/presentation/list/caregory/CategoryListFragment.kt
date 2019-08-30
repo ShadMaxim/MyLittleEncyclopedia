@@ -21,7 +21,6 @@ import com.example.mylittleencyclopedia.adapter.adapterCategory.CategoryListAdap
 import com.example.mylittleencyclopedia.data.model.DataExampleEncyclopedia
 import com.example.mylittleencyclopedia.presentation.pageload.AutoLoadRecyclerListener
 import com.example.mylittleencyclopedia.presentation.sharedPrefs.SharedPrefManager
-import com.yandex.metrica.YandexMetrica
 import kotlinx.android.synthetic.main.fragment_recycler_view_gategory.view.*
 
 class CategoryListFragment : Fragment(),
@@ -57,7 +56,6 @@ class CategoryListFragment : Fragment(),
         progressBar = view.findViewById(R.id.categoryRecyclerProgressBar)
         frameLayout = view.findViewById(R.id.categoryRecyclerFrameLayout)
 
-        // presenter?.firstLoadListCategory()
         presenter?.loadList(searchText)
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewCategory)
@@ -121,8 +119,7 @@ class CategoryListFragment : Fragment(),
     override fun onCategoryClick(item: DataExampleEncyclopedia) {
         Toast.makeText(context, name + ", на это страничке ты больше узнаешь о " + item.category, Toast.LENGTH_SHORT).show()
 
-        val paramsCategory = "{\"title\":\"" + item.category + "\"}"
-        YandexMetrica.reportEvent("SelectedCategory", paramsCategory)
+        presenter?.sendReport(item.category)
 
         listener?.onCategoryClick(item.id_category, item.idObject)
     }
@@ -140,6 +137,10 @@ class CategoryListFragment : Fragment(),
     override fun notShowProgressBar() {
         progressBar?.visibility = View.GONE
         frameLayout?.visibility = View.VISIBLE
+    }
+
+    override fun showError(text: String) {
+        Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
     }
 
     override fun onDetach() {

@@ -24,7 +24,6 @@
         android:background="@color/fon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Elephant "
         android:textColor="@android:color/holo_blue_bright"
         android:textSize="24sp" />
 

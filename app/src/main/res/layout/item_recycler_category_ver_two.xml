@@ -53,7 +53,6 @@
         android:ems="10"
         android:gravity="clip_horizontal"
         android:paddingLeft="15dp"
-        android:text="Самые крупные животные на планете"
         android:textSize="25sp"
         android:textStyle="italic|bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -97,7 +96,6 @@
         android:layout_width="220dp"
         android:layout_height="21dp"
         android:gravity="right"
-        android:text="22 августа 2019"
         app:layout_constraintBottom_toBottomOf="@+id/imageViewCategoryHead"
         app:layout_constraintEnd_toEndOf="@+id/nameCategoryTextView" />
 
@@ -126,7 +124,6 @@
         android:layout_marginBottom="4dp"
         android:background="@color/fon"
         android:gravity="left"
-        android:text="100"
         app:layout_constraintBottom_toBottomOf="@+id/imageView1"
         app:layout_constraintStart_toStartOf="@+id/imageView1" />
 
@@ -136,8 +133,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
-        android:text="Последнее обноврение:"
-        android:textSize="7sp"
+        android:text="@string/dataCreate"
+        android:textSize="8sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView3"
         app:layout_constraintStart_toStartOf="@+id/imageView2" />
 

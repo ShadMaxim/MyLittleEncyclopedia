@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mylittleencyclopedia.R
 import com.example.mylittleencyclopedia.adapter.adapterCategory.CategoryListAdapter
 import com.example.mylittleencyclopedia.data.model.DataExampleEncyclopedia
+import com.example.mylittleencyclopedia.presentation.pageload.AutoLoadRecyclerListener
 import com.example.mylittleencyclopedia.presentation.sharedPrefs.SharedPrefManager
 import com.yandex.metrica.YandexMetrica
 import kotlinx.android.synthetic.main.fragment_recycler_view_gategory.view.*
@@ -34,6 +35,7 @@ class CategoryListFragment : Fragment(),
     private var searchText: String = ""
     private var name: String = ""
     private var listener: Listener? = null
+    private lateinit var scrollListener: AutoLoadRecyclerListener
     private var presenter: CategoryPresenterList? = null
     private var emptyList: MutableList<DataExampleEncyclopedia> = mutableListOf()
 
@@ -55,8 +57,8 @@ class CategoryListFragment : Fragment(),
         progressBar = view.findViewById(R.id.categoryRecyclerProgressBar)
         frameLayout = view.findViewById(R.id.categoryRecyclerFrameLayout)
 
-        // presenter?.firstLoadListExample(searchText)
-        presenter?.firstLoadListCategory()
+        // presenter?.firstLoadListCategory()
+        presenter?.loadList(searchText)
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewCategory)
         recyclerView.setHasFixedSize(true)
@@ -70,6 +72,13 @@ class CategoryListFragment : Fragment(),
         adapter = CategoryListAdapter(load(), this)
         recyclerView.adapter = adapter
 
+        scrollListener = object : AutoLoadRecyclerListener(manager) {
+            override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
+                presenter?.loadMore(page, searchText)
+            }
+        }
+        recyclerView.addOnScrollListener(scrollListener)
+
         searchEditText = view.searchEditTextCategory
         searchEditText.addTextChangedListener(object : TextWatcher {
 
@@ -80,7 +89,7 @@ class CategoryListFragment : Fragment(),
                 timer = Handler()
                 timer?.postDelayed({
                     searchText = p0.toString()
-                    // scrollListener.resetPages()
+                    scrollListener.resetPages()
                     presenter?.loadList(searchText)
                 }, 500)
             }
@@ -96,10 +105,16 @@ class CategoryListFragment : Fragment(),
         adapter.updateList(list)
     }
 
+    override fun onPause() {
+        super.onPause()
+        prefManager.saveSharedPrefsSearchNameCategory(searchEditText.text.toString())
+    }
+
     override fun onResume() {
         super.onResume()
         prefManager = SharedPrefManager(requireContext())
-        name = prefManager.readUserText()
+        searchEditText.setText(prefManager.readSearchNameCategory())
+        name = prefManager.readUserName()
         presenter?.reloadRecycler()
     }
 
@@ -113,7 +128,7 @@ class CategoryListFragment : Fragment(),
     }
 
     fun updateRecyclerList() {
-        var list = presenter?.newListForSearch(searchText)
+        val list = presenter?.newListForSearch(searchText)
         showNewList(list!!)
     }
 

@@ -1,9 +1,9 @@
 package com.example.mylittleencyclopedia.util
 
-import android.content.Context
+// import android.content.Context
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
-import com.bumptech.glide.Glide
+// import com.bumptech.glide.Glide
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import java.lang.Exception
@@ -38,6 +38,7 @@ fun picassoLoader(uri: String, imageView: ImageView, callback: ImageLoaderCallba
         .into(imageView, callback)
 }
 
+/*
 fun glideLoaderCircle(url: String, imageView: ImageView, context: Context) {
     Glide
         .with(context)
@@ -51,4 +52,4 @@ fun glideLoader(url: String, imageView: ImageView, context: Context) {
         .with(context)
         .load(url)
         .into(imageView)
-}
+}*/

@@ -14,8 +14,7 @@
         android:layout_marginEnd="1dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/c1" />
+        android:scaleType="centerCrop" />
 
     <TextView
         android:id="@+id/nameExampleTextView"
@@ -46,8 +45,7 @@
         android:layout_gravity="bottom|right"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/c6" />
+        android:scaleType="centerCrop" />
 
     <ImageView
         android:layout_width="52dp"
@@ -65,7 +63,6 @@
         android:layout_marginRight="60dp"
         android:layout_marginBottom="16dp"
         android:layout_gravity="bottom|right"
-        android:scaleType="centerCrop"
-        android:src="@drawable/c5" />
+        android:scaleType="centerCrop"/>
 
 </FrameLayout>

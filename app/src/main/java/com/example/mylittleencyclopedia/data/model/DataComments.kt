@@ -8,5 +8,11 @@ class DataComments(
     val exampleForComments: String,
 
     @SerializedName("text_comments")
-    val textComments: String
-)
+    val textComments: String,
+
+    @SerializedName("user_name")
+    val userName: String
+) {
+    @SerializedName("created")
+    val dataCreateComments: String = ""
+}

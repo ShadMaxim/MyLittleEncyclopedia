@@ -26,7 +26,7 @@ class CategoryListViewHolder(view: View) : RecyclerView.ViewHolder(view), ViewHo
         countLikes.text = exampleEncyclopedia.count_likes
         picassoLoader(exampleEncyclopedia.category_image, imageViewHead)
 
-        presenter!!.getTimeStamp(exampleEncyclopedia.updated.toLong())
+        presenter!!.getTimeStamp(exampleEncyclopedia.created.toLong())
     }
 
     override fun showDate(date: String) {

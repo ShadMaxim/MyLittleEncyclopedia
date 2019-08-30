@@ -19,13 +19,16 @@ import com.example.mylittleencyclopedia.R
 import com.example.mylittleencyclopedia.data.model.DataComments
 import com.example.mylittleencyclopedia.data.model.DataExampleEncyclopedia
 import com.example.mylittleencyclopedia.presentation.MyListener
+import com.example.mylittleencyclopedia.presentation.sharedPrefs.SharedPrefManager
 import com.example.mylittleencyclopedia.util.picassoLoader
+import com.yandex.metrica.YandexMetrica
 import kotlinx.android.synthetic.main.fragment_details.*
 
 class DetailsFragment : Fragment(), ViewDetails {
 
     private var mylistener: MyListener? = null
     private var presenter: PresenterDetails? = null
+    private lateinit var prefManager: SharedPrefManager
 
     private lateinit var nameDetails: TextView
 
@@ -76,12 +79,19 @@ class DetailsFragment : Fragment(), ViewDetails {
             mylistener = context
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        retainInstance = true
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_details, container, false)
+        retainInstance = true
 
         val idExample = arguments?.getString(ID_EXAMPLE)
         idObjectCategory = arguments?.getString(ID_CATEGORY).toString()
         Log.e("AAA idObjectCategory = ", "id = " + idObjectCategory)
+        prefManager = SharedPrefManager(requireContext())
 
         editTextComments = view.findViewById(R.id.detailsEdiTextComments)
         buttonSendComments = view.findViewById(R.id.detailsButtonSendComments)
@@ -128,7 +138,7 @@ class DetailsFragment : Fragment(), ViewDetails {
         view.findViewById<Button>(R.id.detailsButtonSendComments).setOnClickListener {
 
             val textComments = detailsEdiTextComments.text.toString()
-            presenter!!.sendNewComments(textComments)
+            presenter!!.sendNewComments(textComments, prefManager.readUserName())
         }
 
         view.findViewById<Button>(R.id.detailsButtonCloseComment).setOnClickListener {
@@ -159,11 +169,7 @@ class DetailsFragment : Fragment(), ViewDetails {
         titleExample = example.name
     }
 
-    override fun showComments(listComments: List<DataComments>) {
-
-        if (linearLayoutForComments?.visibility != View.VISIBLE) {
-            linearLayoutForComments?.visibility = View.VISIBLE
-        }
+    override fun showComments(listComments: List<DataComments>, listData: List<String>) {
 
         for (i in 0 until listComments.size) {
 
@@ -178,23 +184,49 @@ class DetailsFragment : Fragment(), ViewDetails {
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
             )
-            linearLayoutParams.setMargins(5, 5, 5, 0)
+            linearLayoutParams.setMargins(5, 10, 5, 0)
 
-            val textView = TextView(context)
-            textView.layoutParams = linearLayoutParams
-            textView.text = listComments[i].textComments
-            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12F)
-            textView.setTypeface(null, Typeface.NORMAL)
+            val linearLayoutParamsForName = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            linearLayoutParamsForName.setMargins(5, 15, 5, 0)
 
-            val textView2 = TextView(context)
-            textView2.setLayoutParams(linearLayoutParams)
-            textView2.setText("")
-            textView2.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12F)
-            textView2.setTypeface(null, Typeface.NORMAL)
+            val linearLayoutParamsForDate = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            linearLayoutParamsForDate.setMargins(5, 3, 5, 0)
+
+            val textComments = TextView(context)
+            textComments.layoutParams = linearLayoutParams
+            textComments.text = listComments[i].textComments
+            textComments.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14F)
+            textComments.setTypeface(null, Typeface.NORMAL)
+
+            val textName = TextView(context)
+            textName.layoutParams = linearLayoutParamsForName
+            textName.text = listComments[i].userName
+            textName.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18F)
+            textName.setTypeface(null, Typeface.BOLD_ITALIC)
+
+            val textDate = TextView(context)
+            textDate.layoutParams = linearLayoutParamsForDate
+            textDate.text = listData[i]
+            textDate.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10F)
+            textDate.setTypeface(null, Typeface.NORMAL)
+
+            val space = TextView(context)
+            space.setLayoutParams(linearLayoutParams)
+            space.setText("")
+            space.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12F)
+            space.setTypeface(null, Typeface.NORMAL)
 
             parent.removeAllViews()
-            parent.addView(textView)
-            parent.addView(textView2)
+            parent.addView(textName)
+            parent.addView(textDate)
+            parent.addView(textComments)
+            parent.addView(space)
 
             val finalParent = view!!.findViewById(R.id.detailsLinearComments) as ViewGroup
             finalParent.addView(parent)
@@ -227,7 +259,11 @@ class DetailsFragment : Fragment(), ViewDetails {
         Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
     }
 
-    override fun unShowLikes() {
+    override fun unShowLikes(nameExample: String) {
+
+        val clickLikes = "{\"title\":\"$nameExample\"}"
+        YandexMetrica.reportEvent("ClickLikes", clickLikes)
+
         likes.visibility = View.INVISIBLE
     }
 

@@ -34,7 +34,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.697" />
 
-
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="358dp"
@@ -64,10 +63,20 @@
         android:layout_marginBottom="104dp"
         android:ems="10"
         android:gravity="center"
-        android:text="Привет, как тебя завут?"
+        android:text="Привет, как твое имя?"
         android:textSize="19sp"
         app:layout_constraintBottom_toTopOf="@+id/editTextHello"
         app:layout_constraintStart_toStartOf="@+id/imageView5" />
+
+    <TextView
+        android:id="@+id/helloContainsIntent"
+        android:layout_width="323dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/buttonHello"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/buttonHello"
+        app:layout_constraintTop_toBottomOf="@+id/buttonHello" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

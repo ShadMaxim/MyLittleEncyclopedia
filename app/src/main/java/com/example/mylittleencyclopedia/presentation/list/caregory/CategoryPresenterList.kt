@@ -13,8 +13,8 @@ class CategoryPresenterList : CategoryBasePresenterList {
     var listOfCategory: MutableList<DataExampleEncyclopedia> = mutableListOf()
     private val repository = provideEncyclopediaRepository()
     var disposable: Disposable? = null
-    var charInFilter = ""
-    private val number_page = 100
+    // var charInFilter = ""
+    private val numberPage = 10
 
     override fun setView(view: CategoryViewList) {
         this.view = view
@@ -34,10 +34,10 @@ class CategoryPresenterList : CategoryBasePresenterList {
     override fun loadList(text: String) {
 
         // view?.showProgressBar()
-        charInFilter = text
+        // charInFilter = text
 
         disposable = repository
-            .getCategoryByChar(100, 0, text)
+            .getCategoryByChar(numberPage, 0, text)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ data ->
@@ -65,10 +65,10 @@ class CategoryPresenterList : CategoryBasePresenterList {
         view?.showNewList(list)
     }
 
-    /*fun loadMore(page: Int, text: String) {
+    fun loadMore(page: Int, text: String) {
 
         disposable = repository
-            .search(number_page, number_page*page, text)
+            .search(numberPage, numberPage*page, text)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ data ->
@@ -77,19 +77,20 @@ class CategoryPresenterList : CategoryBasePresenterList {
                 val list = listOfCategory
 
                 view?.showNewList(list)
-                view?.showToastGetOk(" list load successfully ")
+                // view?.showToastGetOk(" list load successfully ")
             }, { throwable ->
 
-                view?.showToastGetError(throwable.toString())
+                // view?.showToastGetError(throwable.toString())
+                Log.e("AAA Error", throwable.toString())
             })
-    }*/
+    }
 
     fun firstLoadListCategory() {
 
         view?.showProgressBar()
 
         disposable = repository
-            .getCategoryByChar(100, 0, "")
+            .getCategoryByChar(numberPage, 0, "")
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ data ->

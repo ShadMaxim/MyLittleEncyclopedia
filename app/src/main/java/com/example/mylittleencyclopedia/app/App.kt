@@ -1,8 +1,12 @@
 package com.example.mylittleencyclopedia.app
 
 import android.app.Application
+import android.content.Context
+import androidx.multidex.MultiDex
+// import androidx.multidex.MultiDexApplication
 import com.yandex.metrica.YandexMetrica
 import com.yandex.metrica.YandexMetricaConfig
+import com.yandex.metrica.push.YandexMetricaPush
 
 class App : Application() {
 
@@ -15,5 +19,12 @@ class App : Application() {
 
         YandexMetrica.activate(applicationContext, config)
         YandexMetrica.enableActivityAutoTracking(this)
+
+        YandexMetricaPush.init(applicationContext)
+    }
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        MultiDex.install(this)
     }
 }

@@ -7,11 +7,20 @@
     <application
         android:name=".app.App"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_local_library_black_24dp"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ic_local_library_black_24dp"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data  android:name="com.yandex.metrica.push.default_notification_icon"
+                    android:resource="@drawable/ic_local_library_black_24dp"/>
+
+        <receiver android:name=".pushreceiver.SilentPushReceiver">
+            <intent-filter>
+                <action android:name="com.example.mylittleencyclopedia.action.ymp.SILENT_PUSH_RECEIVE"/>
+            </intent-filter>
+        </receiver>
 
         <activity android:name=".presentation.ManagerActivity"/>
         <activity android:name=".presentation.Bay"/>

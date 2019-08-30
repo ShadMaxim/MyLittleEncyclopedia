@@ -8,11 +8,11 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="match_parent"
-        android:layout_height="33dp"
+        android:layout_width="167dp"
+        android:layout_height="32dp"
+        android:layout_marginLeft="149dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="10dp"
-        android:layout_marginLeft="149dp"
         android:scaleType="centerCrop"
         android:src="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -42,8 +42,8 @@
 
     <TextView
         android:id="@+id/nameCategoryTextView"
-        android:layout_width="match_parent"
-        android:layout_height="122dp"
+        android:layout_width="168dp"
+        android:layout_height="124dp"
         android:layout_marginStart="149dp"
         android:layout_marginLeft="149dp"
         android:layout_marginTop="8dp"
@@ -59,17 +59,16 @@
         android:textStyle="italic|bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.858"
         app:layout_constraintStart_toStartOf="@+id/imageViewCategoryHead"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.032" />
-
-
+        app:layout_constraintVertical_bias="0.0" />
 
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="130dp"
-        android:layout_height="181dp"
+        android:layout_width="209dp"
+        android:layout_height="185dp"
         android:layout_marginLeft="11dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="5dp"
@@ -82,13 +81,12 @@
 
     <ImageView
         android:id="@+id/imageViewCategoryHead"
-        android:layout_width="130dp"
-        android:layout_height="match_parent"
+        android:layout_width="204dp"
+        android:layout_height="188dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/c4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -106,7 +104,6 @@
     <ImageView
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="4dp"
         android:src="@drawable/ic_favorite_black"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="@+id/imageViewCategoryHead" />
@@ -136,6 +133,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:text="Последнее обноврение:"
         android:textSize="7sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"

@@ -23,7 +23,7 @@
             <ImageView
                 android:id="@+id/exampleDetailsHeadImageView"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="350dp"
                 android:background="@android:color/holo_blue_bright"
                 android:scaleType="centerCrop" />
 
@@ -100,7 +100,7 @@
             <ImageView
                 android:id="@+id/exampleDetails4ImageView"
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
+                android:layout_height="400dp"
                 android:background="@android:color/holo_blue_bright"
                 android:scaleType="centerCrop" />
 
@@ -139,7 +139,7 @@
             <ImageView
                 android:id="@+id/exampleDetails7ImageView"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="250dp"
                 android:layout_weight="1"
                 android:background="@android:color/holo_blue_bright"
                 android:scaleType="centerCrop" />
@@ -217,9 +217,9 @@
             android:id="@+id/detailsLikesImageView"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_gravity="bottom|right"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="5dp"
+            android:layout_gravity="top|right"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/ic_favorite_black_24dp" />
 
     </FrameLayout>

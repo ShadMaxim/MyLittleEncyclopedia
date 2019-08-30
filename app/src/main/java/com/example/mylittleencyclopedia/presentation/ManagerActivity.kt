@@ -1,7 +1,10 @@
 package com.example.mylittleencyclopedia.presentation
 
+import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.example.mylittleencyclopedia.R
@@ -9,6 +12,8 @@ import com.example.mylittleencyclopedia.presentation.details.DetailsFragment
 import com.example.mylittleencyclopedia.presentation.list.caregory.CategoryListFragment
 import com.example.mylittleencyclopedia.presentation.list.example.ExampleListFragment
 import com.example.mylittleencyclopedia.presentation.start.StartFragment
+import com.yandex.metrica.YandexMetrica
+import com.yandex.metrica.push.YandexMetricaPush
 
 class ManagerActivity : FragmentActivity(), StartFragment.Listener,
     CategoryListFragment.Listener, ExampleListFragment.Listener,
@@ -22,7 +27,13 @@ class ManagerActivity : FragmentActivity(), StartFragment.Listener,
             val transaction = supportFragmentManager.beginTransaction()
             transaction.replace(R.id.dz8ContainerHead, StartFragment())
             transaction.commit()
+        } else {
+
+            YandexMetrica.reportAppOpen(this)
         }
+
+        val myIntent = intent
+        handlePayload(myIntent)
     }
 
     override fun startUserClick() {
@@ -57,5 +68,16 @@ class ManagerActivity : FragmentActivity(), StartFragment.Listener,
 
     override fun onIfNullToBack() {
         supportFragmentManager.popBackStack()
+    }
+
+    private fun handlePayload(intent: Intent) {
+
+        val containsIntent = findViewById<TextView>(R.id.testTextView)
+
+        val payload = intent.getStringExtra(YandexMetricaPush.EXTRA_PAYLOAD)
+        if (!TextUtils.isEmpty(payload)) {
+            containsIntent?.append(String.format("\nPayload: %s", payload))
+            YandexMetrica.reportEvent("loading due Push", payload)
+        }
     }
 }

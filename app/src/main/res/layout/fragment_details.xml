@@ -28,22 +28,22 @@
                 android:scaleType="centerCrop" />
 
             <TextView
+                style="@style/MyProject"
                 android:id="@+id/exampleDetailsTextOneTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
                 android:layout_weight="1"
-                android:gravity="start"
-                android:textSize="13sp" />
+                android:gravity="start" />
 
             <TextView
                 android:id="@+id/exampleDetailsTextTwoTextView"
+                style="@style/MyProject"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
                 android:layout_weight="1"
-                android:gravity="start"
-                android:textSize="13sp" />
+                android:gravity="start" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -70,32 +70,32 @@
 
             <TextView
                 android:id="@+id/exampleDetailsText3TextView"
+                style="@style/MyProject"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
                 android:layout_weight="1"
-                android:gravity="fill"
-                android:textSize="13sp" />
+                android:gravity="fill" />
 
             <TextView
+                style="@style/MyProject"
                 android:id="@+id/exampleDetailsText4TextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:gravity="start"
-                android:textSize="13sp" />
+                android:gravity="start"/>
 
             <TextView
+                style="@style/MyProject"
                 android:id="@+id/exampleDetailsText5TextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:gravity="start"
-                android:textSize="13sp" />
+                android:gravity="start"/>
 
             <ImageView
                 android:id="@+id/exampleDetails4ImageView"
@@ -105,6 +105,7 @@
                 android:scaleType="centerCrop" />
 
             <TextView
+                style="@style/MyProject"
                 android:id="@+id/exampleDetailsText6TextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -145,13 +146,13 @@
                 android:scaleType="centerCrop" />
 
             <TextView
+                style="@style/MyProject"
                 android:id="@+id/exampleDetailsText7TextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
                 android:layout_weight="1"
-                android:gravity="start"
-                android:textSize="13sp" />
+                android:gravity="start"/>
 
             <Button
                 android:id="@+id/detailsButtonCloseComment"
@@ -164,7 +165,7 @@
 
             <EditText
                 android:id="@+id/detailsEdiTextComments"
-                android:hint="оставьте свой комментарий здесь"
+                android:hint="@string/youComments"
                 android:background="@color/fon_example"
                 android:layout_marginTop="35dp"
                 android:layout_marginLeft="2dp"
@@ -179,7 +180,7 @@
 
                 <Button
                     android:id="@+id/detailsButtonSendComments"
-                    android:text="Отправить свой комментарии"
+                    android:text="@string/sendYouComment"
                     android:textSize="10sp"
                     android:layout_weight="1"
                     android:layout_width="0dp"
@@ -187,7 +188,7 @@
 
                 <Button
                     android:id="@+id/detailsButtonShowComments"
-                    android:text="Посмотреть все комментариии"
+                    android:text="@string/allComments"
                     android:textSize="10sp"
                     android:layout_weight="1"
                     android:layout_width="0dp"

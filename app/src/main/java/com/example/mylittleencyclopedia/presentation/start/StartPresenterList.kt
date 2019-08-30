@@ -1,5 +1,7 @@
 package com.example.mylittleencyclopedia.presentation.start
 
+import com.yandex.metrica.YandexMetrica
+
 class StartPresenterList : StartBasePresenterList {
 
     private var view: StartViewList? = null
@@ -10,5 +12,10 @@ class StartPresenterList : StartBasePresenterList {
 
     override fun detachView() {
         this.view = null
+    }
+
+    override fun sendReport(text: String) {
+        val paramsUserName: String = "{\"name\":\"$text\"}"
+        YandexMetrica.reportEvent("NewUser", paramsUserName)
     }
 }

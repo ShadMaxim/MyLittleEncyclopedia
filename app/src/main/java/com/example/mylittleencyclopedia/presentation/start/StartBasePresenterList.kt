@@ -4,4 +4,5 @@ interface StartBasePresenterList {
 
     fun setView(view: StartViewList)
     fun detachView()
+    fun sendReport(text: String)
 }

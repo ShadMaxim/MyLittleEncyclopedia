@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">MyLittleEncyclopedia</string>
     <string name="zagl"><u>Слон</u></string>
+    <string name="save">Сохранить</string>
+    <string name="nameUser">Твое имя</string>
+    <string name="hello">Привет, как твое имя?</string>
+    <string name="sendYouComment">Отправить свой комментарии</string>
+    <string name="allComments">Посмотреть все комментариии</string>
+    <string name="youComments">оставьте свой комментарий здесь</string>
+    <string name="search">Строка поиска</string>
+    <string name="dataCreate">Последнее обноврение:</string>
 </resources>

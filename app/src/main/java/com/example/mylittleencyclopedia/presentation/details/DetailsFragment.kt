@@ -3,7 +3,6 @@ package com.example.mylittleencyclopedia.presentation.details
 import android.content.Context
 import android.graphics.Typeface
 import android.os.Bundle
-import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -21,7 +20,6 @@ import com.example.mylittleencyclopedia.data.model.DataExampleEncyclopedia
 import com.example.mylittleencyclopedia.presentation.MyListener
 import com.example.mylittleencyclopedia.presentation.sharedPrefs.SharedPrefManager
 import com.example.mylittleencyclopedia.util.picassoLoader
-import com.yandex.metrica.YandexMetrica
 import kotlinx.android.synthetic.main.fragment_details.*
 
 class DetailsFragment : Fragment(), ViewDetails {
@@ -90,7 +88,6 @@ class DetailsFragment : Fragment(), ViewDetails {
 
         val idExample = arguments?.getString(ID_EXAMPLE)
         idObjectCategory = arguments?.getString(ID_CATEGORY).toString()
-        Log.e("AAA idObjectCategory = ", "id = " + idObjectCategory)
         prefManager = SharedPrefManager(requireContext())
 
         editTextComments = view.findViewById(R.id.detailsEdiTextComments)
@@ -128,7 +125,6 @@ class DetailsFragment : Fragment(), ViewDetails {
 
         view.findViewById<ImageView>(R.id.detailsLikesImageView).setOnClickListener {
             presenter!!.clickLikes(idObjectCategory)
-            Log.e("AAA clickLikes =  ", "id = " + idObjectCategory)
         }
 
         view.findViewById<Button>(R.id.detailsButtonShowComments).setOnClickListener {
@@ -217,8 +213,8 @@ class DetailsFragment : Fragment(), ViewDetails {
             textDate.setTypeface(null, Typeface.NORMAL)
 
             val space = TextView(context)
-            space.setLayoutParams(linearLayoutParams)
-            space.setText("")
+            space.layoutParams = linearLayoutParams
+            space.text = ""
             space.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12F)
             space.setTypeface(null, Typeface.NORMAL)
 
@@ -261,9 +257,7 @@ class DetailsFragment : Fragment(), ViewDetails {
 
     override fun unShowLikes(nameExample: String) {
 
-        val clickLikes = "{\"title\":\"$nameExample\"}"
-        YandexMetrica.reportEvent("ClickLikes", clickLikes)
-
+        presenter?.sendReport(nameExample)
         likes.visibility = View.INVISIBLE
     }
 

@@ -11,7 +11,7 @@
         android:layout_width="320dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
-        android:text="Сохранить"
+        android:text="@string/save"
         app:layout_constraintStart_toStartOf="@+id/editTextHello"
         app:layout_constraintTop_toBottomOf="@+id/editTextHello" />
 
@@ -26,7 +26,7 @@
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Твое имя"
+        android:hint="@string/nameUser"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.48"
@@ -63,7 +63,7 @@
         android:layout_marginBottom="104dp"
         android:ems="10"
         android:gravity="center"
-        android:text="Привет, как твое имя?"
+        android:text="@string/hello"
         android:textSize="19sp"
         app:layout_constraintBottom_toTopOf="@+id/editTextHello"
         app:layout_constraintStart_toStartOf="@+id/imageView5" />

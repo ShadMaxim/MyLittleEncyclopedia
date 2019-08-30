@@ -9,4 +9,6 @@ interface BasePresenterDetails {
     fun showComments()
     fun sendNewComments(text: String, userName: String)
     fun unShowCloseButtonComments()
+
+    fun sendReport(text: String)
 }

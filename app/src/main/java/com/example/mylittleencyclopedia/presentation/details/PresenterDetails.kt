@@ -1,9 +1,9 @@
 package com.example.mylittleencyclopedia.presentation.details
 
-import android.util.Log
 import com.example.mylittleencyclopedia.data.model.DataComments
 import com.example.mylittleencyclopedia.data.model.DataExampleEncyclopedia
 import com.example.mylittleencyclopedia.data.provide.provideEncyclopediaRepository
+import com.yandex.metrica.YandexMetrica
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -34,16 +34,12 @@ class PresenterDetails : BasePresenterDetails {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
 
-                Log.e("AAA it Details =  ", it.toString())
-                Log.e("AAA it size =  ", it.size.toString())
 
                 example = it[0]
-                Log.e("AAA example =  ", example.toString())
                 view?.showExample(example!!)
             }, {
 
                 view?.showToastError("""Error : $it""")
-                Log.e("AAA Error =  ", it.toString())
             })
 
         disposable = repository
@@ -53,11 +49,9 @@ class PresenterDetails : BasePresenterDetails {
             .subscribe({
 
                 exampleCategory = it
-                Log.e("AAA exampleCategory Rx=", exampleCategory.toString())
             }, {
 
                 view?.showToastError("""Error : $it""")
-                Log.e("AAA Error =  ", it.toString())
             })
     }
 
@@ -65,18 +59,14 @@ class PresenterDetails : BasePresenterDetails {
 
         val idObject: String = exampleCategory!!.idObject
         val category: String = exampleCategory!!.category
-        val idcategory: String = exampleCategory!!.id_category
+        val idCategry: String = exampleCategory!!.id_category
         val categoryImage: String = exampleCategory!!.category_image
         val countLikes: String = exampleCategory!!.count_likes
         val created: String = exampleCategory!!.created
 
         val temp = parseInt(countLikes)
-        val x = (temp + 1).toString()
-        Log.e("AAA exampleCategory =  ", exampleCategory.toString())
-        Log.e("AAA temp =  ", temp.toString())
-        Log.e("AAA x =  ", x)
-
-        val updateCategory = DataExampleEncyclopedia(idObject, category, idcategory, categoryImage, x, created)
+        val countClickAdd = (temp + 1).toString()
+        val updateCategory = DataExampleEncyclopedia(idObject, category, idCategry, categoryImage, countClickAdd, created)
 
         disposable = repository
             .updateCountLikes(updateCategory)
@@ -84,12 +74,10 @@ class PresenterDetails : BasePresenterDetails {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
 
-                Log.e("AAA it update = ", it.toString())
                 view?.unShowLikes(example!!.name)
             }, {
 
                 view?.showToastError("""Error : $it""")
-                Log.e("AAA Error =  ", it.toString())
             })
     }
 
@@ -116,7 +104,7 @@ class PresenterDetails : BasePresenterDetails {
                 view?.showCloseComment()
             }, {
 
-                Log.e("AAA Comments Error =", it.toString())
+                view?.showToastError("""Error : $it""")
             })
     }
 
@@ -130,12 +118,10 @@ class PresenterDetails : BasePresenterDetails {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
 
-                Log.e("AAA it Comments =", it.toString())
-                Log.e("AAA  Comments =", comments.toString())
                 view?.unShowSendComment()
             }, {
 
-                Log.e("AAA Comments Error =", it.toString())
+                view?.showToastError("""Error : $it""")
             })
     }
 
@@ -161,5 +147,10 @@ class PresenterDetails : BasePresenterDetails {
     override fun detachView() {
         this.view = null
         disposable!!.dispose()
+    }
+
+    override fun sendReport(text: String) {
+        val clickLikes = "{\"title\":\"$text\"}"
+        YandexMetrica.reportEvent("ClickLikes", clickLikes)
     }
 }

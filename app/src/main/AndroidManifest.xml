@@ -21,10 +21,7 @@
                 <action android:name="com.example.mylittleencyclopedia.action.ymp.SILENT_PUSH_RECEIVE"/>
             </intent-filter>
         </receiver>
-
-        <activity android:name=".presentation.Hello"/>
-        <activity android:name=".presentation.Bay"/>
-
+     
         <activity android:name=".presentation.ManagerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,4 +1,3 @@
-/*
 package com.example.mylittleencyclopedia.pushreceiver
 
 import android.content.BroadcastReceiver
@@ -10,4 +9,4 @@ class SilentPushReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
         var payload: String = intent!!.getStringExtra(YandexMetricaPush.EXTRA_PAYLOAD)
     }
-}*/
+}

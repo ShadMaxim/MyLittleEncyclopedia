@@ -7,6 +7,6 @@ interface BasePresenterDetails {
     fun detachView()
     fun clickLikes(idObjectCategory: String)
     fun showComments()
-    fun sendNewComments(text: String)
+    fun sendNewComments(text: String, userName: String)
     fun unShowCloseButtonComments()
 }

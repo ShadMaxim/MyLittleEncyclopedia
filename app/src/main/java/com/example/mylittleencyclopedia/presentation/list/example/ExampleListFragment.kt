@@ -100,7 +100,7 @@ class ExampleListFragment : Fragment(),
     override fun onResume() {
         super.onResume()
         prefManager = SharedPrefManager(requireContext())
-        // dz8SearchEditText.setText(prefManager.readUserText())
+        // dz8SearchEditText.setText(prefManager.readUserName())
         presenter?.reloadRecycler()
     }
 

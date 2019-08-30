@@ -23,29 +23,30 @@ class Hello : Activity() {
         setContentView(R.layout.activity_hello)
 
         containsIntent = findViewById(R.id.helloContainsIntent)
-        val textName: EditText = findViewById<EditText>(R.id.editTextHello) as EditText
-        val prefManager: SharedPrefManager = SharedPrefManager(this)
+        val textName: EditText = findViewById<EditText>(R.id.editTextHello)
+        val prefManager = SharedPrefManager(this)
 
         if (savedInstanceState != null) {
             YandexMetrica.reportAppOpen(this)
         }
 
-        var intent = intent
-        handlePayload(intent)
+        val myIntent = intent
+        handlePayload(myIntent)
 
         buttonHello.setOnClickListener {
             val intent = Intent(this, ManagerActivity::class.java)
-            prefManager.saveSharedPrefs(textName.text.toString())
-            Toast.makeText(this, "Спасибо, " + textName.text + " , что зашли к нам", Toast.LENGTH_LONG).show()
+            prefManager.saveSharedPrefsUserName(textName.text.toString())
+            Toast.makeText(this, "Мы рады приветствовать тебя, " + textName.text +
+                    " , на просторах нашей энциклопедии!", Toast.LENGTH_LONG).show()
 
             val paramsUserName: String = "{\"name\":\"" + textName.text + "\"}"
             YandexMetrica.reportEvent("NewUser", paramsUserName)
 
             startActivity(intent)
 
-            Log.e("AAA", prefManager.readUserText())
+            Log.e("AAA", prefManager.readUserName())
 
-            textName.setText(prefManager.readUserText())
+            textName.setText(prefManager.readUserName())
         }
     }
 
@@ -53,7 +54,7 @@ class Hello : Activity() {
         val payload = intent.getStringExtra(YandexMetricaPush.EXTRA_PAYLOAD)
         if (!TextUtils.isEmpty(payload)) {
             containsIntent?.append(String.format("\nPayload: %s", payload))
-            YandexMetrica.reportEvent("loading due Push")
+            YandexMetrica.reportEvent("loading due Push", payload)
         }
     }
 }

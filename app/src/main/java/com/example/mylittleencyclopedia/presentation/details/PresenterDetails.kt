@@ -8,6 +8,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import java.lang.Integer.parseInt
+import java.text.SimpleDateFormat
+import java.util.Date
 
 class PresenterDetails : BasePresenterDetails {
 
@@ -18,6 +20,7 @@ class PresenterDetails : BasePresenterDetails {
     var exampleCategory: DataExampleEncyclopedia? = null
 
     var listComments: MutableList<DataComments> = mutableListOf()
+    var listData: MutableList<String> = mutableListOf()
 
     override fun setView(view: ViewDetails) {
         this.view = view
@@ -65,18 +68,15 @@ class PresenterDetails : BasePresenterDetails {
         val idcategory: String = exampleCategory!!.id_category
         val categoryImage: String = exampleCategory!!.category_image
         val countLikes: String = exampleCategory!!.count_likes
-        val dateUp: String = exampleCategory!!.date_up
-        val updated: String = exampleCategory!!.updated
+        val created: String = exampleCategory!!.created
 
         val temp = parseInt(countLikes)
-        val tempUpdate: Long = updated.toLong()
         val x = (temp + 1).toString()
         Log.e("AAA exampleCategory =  ", exampleCategory.toString())
         Log.e("AAA temp =  ", temp.toString())
-        Log.e("AAA x =  ", x.toString())
-        Log.e("AAA tempUpdate =  ", tempUpdate.toString())
+        Log.e("AAA x =  ", x)
 
-        val updateCategory = DataExampleEncyclopedia(idObject, category, idcategory, categoryImage, x, dateUp, updated)
+        val updateCategory = DataExampleEncyclopedia(idObject, category, idcategory, categoryImage, x, created)
 
         disposable = repository
             .updateCountLikes(updateCategory)
@@ -103,10 +103,15 @@ class PresenterDetails : BasePresenterDetails {
 
                 listComments.clear()
                 listComments.addAll(it)
-                // Log.e("AAA List Comments =", it[0].textComments)
-                // Log.e("AAA List Comments =", it[1].textComments)
-                Log.e("AAA size listComments =", listComments.size.toString())
-                view?.showComments(listComments)
+
+                listComments.sortWith(compareBy({ it.dataCreateComments }))
+                listComments.reverse()
+
+                listData.addAll(getTimeStamp(listComments))
+                listData.sort()
+                listData.reverse()
+
+                view?.showComments(listComments, listData)
                 view?.unShowButtonShowComment()
                 view?.showCloseComment()
             }, {
@@ -115,9 +120,9 @@ class PresenterDetails : BasePresenterDetails {
             })
     }
 
-    override fun sendNewComments(text: String) {
+    override fun sendNewComments(text: String, userName: String) {
 
-        val comments = DataComments(example!!.name, text)
+        val comments = DataComments(example!!.name, text, userName)
 
         disposable = repository
             .createComments(comments)
@@ -125,7 +130,6 @@ class PresenterDetails : BasePresenterDetails {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
 
-                // Log.e("AAA List Comments =", it[0].textComments)
                 Log.e("AAA it Comments =", it.toString())
                 Log.e("AAA  Comments =", comments.toString())
                 view?.unShowSendComment()
@@ -137,6 +141,21 @@ class PresenterDetails : BasePresenterDetails {
 
     override fun unShowCloseButtonComments() {
         view?.unShowCloseButtonComment()
+    }
+
+    private fun getTimeStamp(list: MutableList<DataComments>): List<String> {
+
+        val newListData: MutableList<String> = mutableListOf()
+
+        for (i in 0 until list.size) {
+
+            val date: String?
+            val formatter = SimpleDateFormat("yyyy-MM-dd")
+            date = formatter.format(Date(list[i].dataCreateComments.toLong()))
+
+            newListData.add(date)
+        }
+        return newListData
     }
 
     override fun detachView() {

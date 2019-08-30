@@ -8,10 +8,10 @@ interface ViewDetails {
     fun showExample(example: DataExampleEncyclopedia)
     fun showToastOk(text: String)
     fun showToastError(text: String)
-    fun unShowLikes(text: String)
+    fun unShowLikes(nameExample: String)
     fun unShowSendComment()
     fun unShowCloseButtonComment()
     fun showCloseComment()
     fun unShowButtonShowComment()
-    fun showComments(listComments: List<DataComments>)
+    fun showComments(listComments: List<DataComments>, listData: List<String>)
 }

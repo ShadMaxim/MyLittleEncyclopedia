@@ -8,8 +8,9 @@ import com.example.mylittleencyclopedia.R
 import com.example.mylittleencyclopedia.presentation.details.DetailsFragment
 import com.example.mylittleencyclopedia.presentation.list.caregory.CategoryListFragment
 import com.example.mylittleencyclopedia.presentation.list.example.ExampleListFragment
+import com.example.mylittleencyclopedia.presentation.start.StartFragment
 
-class ManagerActivity : FragmentActivity(),
+class ManagerActivity : FragmentActivity(), StartFragment.Listener,
     CategoryListFragment.Listener, ExampleListFragment.Listener,
     MyListener {
 
@@ -19,9 +20,13 @@ class ManagerActivity : FragmentActivity(),
 
         if (savedInstanceState == null) {
             val transaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.dz8ContainerHead, CategoryListFragment())
+            transaction.replace(R.id.dz8ContainerHead, StartFragment())
             transaction.commit()
         }
+    }
+
+    override fun startUserClick() {
+        replaceFragment(R.id.dz8ContainerHead, CategoryListFragment())
     }
 
     override fun onExampleClick(id: String, idOblectCategory: String) {

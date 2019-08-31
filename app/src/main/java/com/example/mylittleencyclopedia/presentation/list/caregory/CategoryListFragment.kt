@@ -58,6 +58,8 @@ class CategoryListFragment : Fragment(),
 
         presenter?.loadList(searchText)
 
+        name = prefManager.readUserName()
+
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewCategory)
         recyclerView.setHasFixedSize(true)
 
@@ -112,7 +114,6 @@ class CategoryListFragment : Fragment(),
         super.onResume()
         prefManager = SharedPrefManager(requireContext())
         searchEditText.setText(prefManager.readSearchNameCategory())
-        name = prefManager.readUserName()
         presenter?.reloadRecycler()
     }
 

@@ -28,14 +28,14 @@ https://www.dropbox.com/home/Camera%20Uploads?preview=app-debug.apk
 
 
 # Used in the project:
-## RxJava2, Rettofit2, OkHttp, REST, MVP
+RxJava2, Rettofit2, OkHttp, REST, MVP
 
 # The project is fully written in
-## Kotlin
+Kotlin
 
 # To collect information on the use of the application is used
-##Yandex AppMetrica
+Yandex AppMetrica
 
 # To notify users of updates
-## Yandex AppMetrica Push
+Yandex AppMetrica Push
 

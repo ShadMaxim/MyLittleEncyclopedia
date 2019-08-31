@@ -1,3 +1,0 @@
-package com.example.mylittleencyclopedia.presentation.start
-
-interface StartViewList

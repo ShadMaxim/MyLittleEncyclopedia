@@ -4,9 +4,9 @@ import com.yandex.metrica.YandexMetrica
 
 class StartPresenterList : StartBasePresenterList {
 
-    private var view: StartViewList? = null
+    private var view: StartView? = null
 
-    override fun setView(view: StartViewList) {
+    override fun setView(view: StartView) {
         this.view = view
     }
 
@@ -15,7 +15,9 @@ class StartPresenterList : StartBasePresenterList {
     }
 
     override fun sendReport(text: String) {
-        val paramsUserName: String = "{\"name\":\"$text\"}"
+        val paramsUserName = "{\"name\":\"$text\"}"
         YandexMetrica.reportEvent("NewUser", paramsUserName)
+
+        view?.showToastHello(text)
     }
 }

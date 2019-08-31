@@ -12,11 +12,11 @@ import androidx.fragment.app.Fragment
 import com.example.mylittleencyclopedia.R
 import com.example.mylittleencyclopedia.presentation.sharedPrefs.SharedPrefManager
 
-class StartFragment : Fragment(), StartViewList {
+class StartFragment : Fragment(), StartView {
 
     private lateinit var prefManager: SharedPrefManager
+    private var textName: EditText? = null
 
-    private var name: String = ""
     private var listener: Listener? = null
     private var presenter: StartPresenterList? = null
 
@@ -31,29 +31,23 @@ class StartFragment : Fragment(), StartViewList {
 
         presenter = StartPresenterList()
         presenter?.setView(this)
+        prefManager = SharedPrefManager(requireContext())
 
-        val textName: EditText = view.findViewById<EditText>(R.id.editTextHello)
-        val prefManager = SharedPrefManager(requireContext())
-        prefManager.saveSharedPrefsUserName(textName.text.toString())
-        textName.setText(prefManager.readUserName())
+        textName = view.findViewById<EditText>(R.id.editTextHello)
 
         view.findViewById<Button>(R.id.buttonHello).setOnClickListener {
 
-            presenter?.sendReport(textName.text.toString())
+            prefManager.saveSharedPrefsUserName(textName?.text.toString())
 
-            Toast.makeText(context, "Мы рады приветствовать тебя, " + textName.text +
-                    " , на просторах нашей энциклопедии!", Toast.LENGTH_LONG).show()
-
+            presenter?.sendReport(textName?.text.toString())
             listener?.startUserClick()
         }
-
         return view
     }
 
-    override fun onResume() {
-        super.onResume()
-        prefManager = SharedPrefManager(requireContext())
-        name = prefManager.readUserName()
+    override fun showToastHello(userName: String) {
+        Toast.makeText(context, "Мы рады приветствовать тебя, " + userName +
+                " , на просторах нашей энциклопедии!", Toast.LENGTH_LONG).show()
     }
 
     override fun onDetach() {

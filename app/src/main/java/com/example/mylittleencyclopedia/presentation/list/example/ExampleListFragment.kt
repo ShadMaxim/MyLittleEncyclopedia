@@ -16,7 +16,6 @@ import com.example.mylittleencyclopedia.R
 import com.example.mylittleencyclopedia.adapter.adapterExample.ExampleListAdapter
 import com.example.mylittleencyclopedia.data.model.DataExampleEncyclopedia
 import com.example.mylittleencyclopedia.presentation.sharedPrefs.SharedPrefManager
-import com.yandex.metrica.YandexMetrica
 
 class ExampleListFragment : Fragment(),
     ExampleListAdapter.ClickListener, ExampleViewList {
@@ -106,8 +105,7 @@ class ExampleListFragment : Fragment(),
     override fun onExampleClick(item: DataExampleEncyclopedia) {
         Toast.makeText(context, item.name + " - это интересно", Toast.LENGTH_SHORT).show()
 
-        val paramsExample = "{\"example\":\"" + item.name + "\"}"
-        YandexMetrica.reportEvent("SelectedExample", paramsExample)
+        presenter?.sendReport(item.name)
 
         listener?.onExampleClick(item.idObject, idObjectCategory)
     }

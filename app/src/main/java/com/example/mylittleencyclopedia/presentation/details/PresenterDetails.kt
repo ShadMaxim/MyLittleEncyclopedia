@@ -86,12 +86,12 @@ class PresenterDetails : BasePresenterDetails {
             .getCommentsByExample(100, 0, example!!.name)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
+            .subscribe({ it ->
 
                 listComments.clear()
                 listComments.addAll(it)
 
-                listComments.sortWith(compareBy({ it.dataCreateComments }))
+                listComments.sortWith(compareBy { it.dataCreateComments })
                 listComments.reverse()
 
                 listData.addAll(getTimeStamp(listComments))
@@ -133,7 +133,6 @@ class PresenterDetails : BasePresenterDetails {
         val newListData: MutableList<String> = mutableListOf()
 
         for (i in 0 until list.size) {
-
             val date: String?
             val formatter = SimpleDateFormat("yyyy-MM-dd")
             date = formatter.format(Date(list[i].dataCreateComments.toLong()))

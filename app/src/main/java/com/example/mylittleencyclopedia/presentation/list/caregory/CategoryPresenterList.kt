@@ -57,7 +57,7 @@ class CategoryPresenterList : CategoryBasePresenterList {
     fun loadMore(page: Int, text: String) {
 
         disposable = repository
-            .search(numberPage, numberPage*page, text)
+            .getCategoryByChar(numberPage, numberPage*page, text)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ data ->

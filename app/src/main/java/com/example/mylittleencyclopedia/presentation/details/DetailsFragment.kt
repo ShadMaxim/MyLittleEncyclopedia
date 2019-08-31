@@ -3,6 +3,7 @@ package com.example.mylittleencyclopedia.presentation.details
 import android.content.Context
 import android.graphics.Typeface
 import android.os.Bundle
+import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -134,6 +135,7 @@ class DetailsFragment : Fragment(), ViewDetails {
         view.findViewById<Button>(R.id.detailsButtonSendComments).setOnClickListener {
 
             val textComments = detailsEdiTextComments.text.toString()
+            Log.e("AAA details name = ", prefManager.readUserName())
             presenter!!.sendNewComments(textComments, prefManager.readUserName())
         }
 

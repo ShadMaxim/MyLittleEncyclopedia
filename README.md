@@ -4,7 +4,6 @@ How long have you learned something new and interesting?
 Do you know, for example, which animals are the largest and most beautiful?
 In the application "MyLittleEncyclopedia" there are answers to many questions of interest to you from childhood, some of which may put some of you in a dead end.
 
-https://www.dropbox.com/home/Camera%20Uploads?preview=app-debug.apk
 
 ![alt text](Screenshot_20190831-214721.png )
 

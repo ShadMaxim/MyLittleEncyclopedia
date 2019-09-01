@@ -12,12 +12,8 @@ class ExamplePresenterList : ExampleBasePresenterList {
 
     private var view: ExampleViewList? = null
     var listOfExample: MutableList<DataExampleEncyclopedia> = mutableListOf()
-    // var listOfCat: MutableList<DataExampleEncyclopedia> = mutableListOf()
     private val repository = provideEncyclopediaRepository()
     var disposable: Disposable? = null
-    // var charInFilter = ""
-    // var observable: Observable<Long> = Observable.interval(1, TimeUnit.SECONDS)
-    // private val number_page = 100
 
     override fun setView(view: ExampleViewList) {
         this.view = view
@@ -45,20 +41,15 @@ class ExamplePresenterList : ExampleBasePresenterList {
             .subscribe({ data ->
 
                 listOfExample.clear()
-
                 listOfExample.addAll(data)
                 val list = listOfExample
-
-                Log.e("AAA List  ", data.toString())
-                Log.e("AAA List size ", data.size.toString())
-
-                Log.e("AAA Example size ", listOfExample.size.toString())
 
                 view?.showNewList(list)
                 view?.notShowProgressBar()
             }, { throwable ->
 
                 Log.e("AAA Error", throwable.toString())
+                view?.showError(throwable.toString())
             })
     }
 

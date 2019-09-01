@@ -102,6 +102,10 @@ class ExampleListFragment : Fragment(),
         presenter?.reloadRecycler()
     }
 
+    override fun showError(text: String) {
+        Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
+    }
+
     override fun onExampleClick(item: DataExampleEncyclopedia) {
         Toast.makeText(context, item.name + " - это интересно", Toast.LENGTH_SHORT).show()
 

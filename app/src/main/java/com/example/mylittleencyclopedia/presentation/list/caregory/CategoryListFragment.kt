@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -116,9 +115,7 @@ class CategoryListFragment : Fragment(),
     }
 
     override fun onCategoryClick(item: DataExampleEncyclopedia) {
-        Log.e("AAA category pref ", prefManager.readUserName())
         name = prefManager.readUserName()
-        Log.e("AAA category name ", name)
         Toast.makeText(context, name + ", на это страничке ты больше узнаешь о категории " + item.category, Toast.LENGTH_SHORT).show()
 
         presenter?.sendReport(item.category)

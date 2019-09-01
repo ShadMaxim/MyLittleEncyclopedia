@@ -7,29 +7,29 @@ In the application "MyLittleEncyclopedia" there are answers to many questions of
 https://www.dropbox.com/h?preview=app-debug.apk
 
 
-![alt text](Screenshot_20190831-214721.png )
+![alt text](screenshots/Screenshot_20190831-214721.png )
 
 
-![alt text](Screenshot_20190831-214744.png )
+![alt text](screenshots/Screenshot_20190831-214744.png )
 
 
-![alt text](Screenshot_20190831-214751.png )
+![alt text](screenshots/Screenshot_20190831-214751.png )
 
 
-![alt text](Screenshot_20190831-214756.png )
+![alt text](screenshots/Screenshot_20190831-214756.png )
 
 
-![alt text](Screenshot_20190831-214802.png )
+![alt text](screenshots/Screenshot_20190831-214802.png )
 
 
-![alt text](Screenshot_20190831-214807.png )
+![alt text](screenshots/Screenshot_20190831-214807.png )
 
 
-![alt text](Screenshot_20190831-215021.png )
+![alt text](screenshots/Screenshot_20190831-215021.png )
 
 
 # Used in the project:
-RxJava2, Rettofit2, OkHttp, REST, MVP
+RxJava2, Retrofit2, OkHttp, REST, MVP
 
 # The project is fully written in
 Kotlin

@@ -4,6 +4,9 @@ How long have you learned something new and interesting?
 Do you know, for example, which animals are the largest and most beautiful?
 In the application "MyLittleEncyclopedia" there are answers to many questions of interest to you from childhood, some of which may put some of you in a dead end.
 
+MyLittleEncyclopedia is positioned as a children's educational application that may be of interest to adults as well.
+You can also leave a review about the article, indicate the found inaccuracies or errors, or just wishes. You can read reviews from other users
+
 https://www.dropbox.com/h?preview=app-debug.apk
 
 
